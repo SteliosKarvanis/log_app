@@ -8,7 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 class Login_form(forms.Form):
-    name = forms.CharField(
+    username = forms.CharField(
         widget=forms.TextInput(
             attrs={
                 "placeholder": "e.g: SteliosKarvanis",
@@ -23,32 +23,25 @@ class Login_form(forms.Form):
             }
         ))
 
-class Sign_up_form(UserCreationForm):
-    name = forms.CharField(
+class Sign_up_form(forms.Form):
+    username = forms.CharField(
         widget=forms.TextInput(
             attrs={
                 "placeholder": "e.g: SteliosKarvanis",
                 "class": "form-control"
             }
         ))
-    password = forms.CharField(
+    password1 = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
                 "placeholder": "e.g: SecretP@ssword!",
                 "class": "form-control"
             }
         ))
-    password_confirm = forms.CharField(
+    password2 = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
                 "placeholder": "e.g: SecretP@ssword!",
-                "class": "form-control"
-            }
-        ))
-    email = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "e.g: stelioscbranco@hotmail.com",
                 "class": "form-control"
             }
         ))

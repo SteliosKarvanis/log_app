@@ -3,10 +3,11 @@ from django.shortcuts import redirect
 from . import views
 
 urlpatterns = [
-    path('', views.login),
+    path('', views.set_user),
     path('home', views.home),
-    path('login', views.login, name='login'),
-    path('login/sign_up', lambda req: redirect('/sign_up')),
+    path('login', views.set_user, name='login'),
+    path('login/add_user', lambda req: redirect('/add_user')),
     path('login/login', lambda req: redirect('/login')),
-    path('sign_up', views.sign_up, name='sign_up'),
+    path('add_user', views.add_user, name='add_user'),
+    path('logout_user', views.logout_user),
 ]
