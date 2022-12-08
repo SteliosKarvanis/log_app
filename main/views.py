@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 
 
-def set_user(request):
+def login_user(request):
     if request.method == "POST":
         form = Login_form(request.POST)
         user = authenticate(request=request, username=request.POST['username'], password=request.POST['password'])
@@ -43,6 +43,8 @@ def add_user(request):
 def home(request): 
     return render(request, "base.html")   
 
+
 def logout_user(request):
     logout(request)
     return redirect('/login')
+
