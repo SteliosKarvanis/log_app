@@ -10,4 +10,5 @@ urlpatterns = [
     path('login/login', lambda req: redirect('/login')),
     path('add_user', views.add_user, name='add_user'),
     path('logout_user', views.logout_user),
+    path('workspace', views.workspace)
 ]

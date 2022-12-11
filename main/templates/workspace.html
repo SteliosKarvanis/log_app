@@ -2,5 +2,44 @@
 {% block title %} Workspace {% endblock %}
 {% load crispy_forms_tags %}
 {% block content %}
-
+<form method="POST">
+    {% csrf_token %}
+    <div class="form-row align-items-center">
+        <div class="col-sm-3 my-1">
+            <input type="text" class="form-control" id="Text1" name="title" placeholder="Title">
+        </div>
+        <div class="col-sm-3 my-1">
+          <input type="text" class="form-control" id="Text2" name="creator" placeholder="Creator">
+        </div>
+        <div class="col-sm-3 my-1">
+            <input type="date" class="form-control" id="Text3" name="date" placeholder="Date">
+          </div>
+        <div class="col-auto my-1">
+            <button type="submit" class="btn btn-primary" >Search</button>
+        </div>
+    </div>
+</form>
+<div class="mt-5 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
+    {% for card in cards %}
+    <div class="p-4 mt-5 text-black col-lg-5 rounded mx-auto color" style="background-color:lightblue;">
+        <p class="p-1 text-black col-lg-10 rounded mx-auto color text-center" style="background-color:lightseagreen;">{{ card.title }}</p>
+        <label for="name" class="form-label">Users:</label>
+        <div class="p-1 text-black col-lg-10 rounded mx-auto color text-center" style="background-color:whitesmoke;">
+            {{ card.user }}
+        </div>
+        <label for="name">Date:</label>
+        <div class="p-1 text-black col-lg-10 rounded mx-auto color text-center" style="background-color:whitesmoke;">
+            {{ card.create_date }}
+        </div>
+        <label for="name">Members:</label>
+        <div class="p-1 text-black col-lg-10 rounded mx-auto color text-center" style="background-color:whitesmoke;">
+            {{ card.members }}
+        </div>
+        <label for="name">Description:</label>
+        <div class="p-1 text-black col-lg-10 rounded mx-auto color text-center" style="background-color:whitesmoke;">
+            {{ card.description }}
+        </div>
+      </div>
+    {% endfor %}
+</div>
 {% endblock %}
