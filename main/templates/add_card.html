@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %} Sign Up {% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+<form role="form text-left" action="" method="post">
+  {% csrf_token %}
+  <div class="p-4 mt-5 text-white col-lg-5 rounded mx-auto color" style="background-color:#0E3345;">
+      <div class="form-group">
+          <label for="username">Title</label>
+          <input type="text" class="mb-3" id="Text1" name="title" placeholder="Title">        
+        </div>
+        <div class="form-group mt-3">
+          <label for="Members">Members</label>
+          <input type="text" class="mb-3" id="Text2" name="members" placeholder="Members">
+        </div>
+        <div class="form-group mt-3">
+          <label for="text">Description</label>
+            <input type="text" class="mb-3" id="Text3" name="description" placeholder="Description"> 
+        </div>
+    <div class="text-center">
+      <button type="submit" name="getData" class="btn btn-outline-primary w-100 mt-4 mb-2">Create Card</button>
+    </div>
+    {% if created %}
+    <p> Card Created</p>
+    {% endif %}
+  </div>
+</form>
+{% endblock %}

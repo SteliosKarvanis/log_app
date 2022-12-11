@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from .models import Card
 from django.views import View
+import datetime
 
 def login_user(request):
     if request.method == "POST":
@@ -13,7 +14,7 @@ def login_user(request):
         user = authenticate(request=request, username=request.POST['username'], password=request.POST['password'])
         if user is not None:
             login(request, user)
-            return redirect("/home")
+            return redirect("/workspace")
         else:
             form = Login_form()
     elif request.method == "GET":
@@ -41,9 +42,6 @@ def add_user(request):
     return render(request, "add_user.html", {"form":form, "created":created, "name":name})   
 
 
-def home(request): 
-    return render(request, "base.html")   
-
 
 def logout_user(request):
     logout(request)
@@ -70,3 +68,20 @@ def workspace(request):
     }
 
     return render(request, "workspace.html", context)
+
+@login_required(redirect_field_name='login')
+def create_card(request):
+    if request.method == "POST":
+        Card.objects.create(user=request.user, title=request.POST.get("title"), members=request.POST.get("members"), description=request.POST.get("description"), create_date=datetime.date.today())
+        return redirect("/workspace")
+    elif request.method == "GET":
+        title = ""
+        members = ""
+        description = ""
+    context = {
+        'title':title,
+        'members':members,
+        'description':description
+    }
+
+    return render(request, "add_card.html", context)

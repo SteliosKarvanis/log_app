@@ -2,9 +2,9 @@
 {% block title %} Workspace {% endblock %}
 {% load crispy_forms_tags %}
 {% block content %}
-<form method="POST">
+<form method="POST" class="form-inline"> 
     {% csrf_token %}
-    <div class="form-row align-items-center">
+    <div class="form-group align-items-center col-lg-5">
         <div class="col-sm-3 my-1">
             <input type="text" class="form-control" id="Text1" name="title" placeholder="Title">
         </div>
@@ -23,17 +23,17 @@
     {% for card in cards %}
     <div class="p-4 mt-5 text-black col-lg-5 rounded mx-auto color" style="background-color:lightblue;">
         <p class="p-1 text-black col-lg-10 rounded mx-auto color text-center" style="background-color:lightseagreen;">{{ card.title }}</p>
-        <label for="name" class="form-label">Users:</label>
+        <label for="name" class="form-label">Created by:</label>
         <div class="p-1 text-black col-lg-10 rounded mx-auto color text-center" style="background-color:whitesmoke;">
             {{ card.user }}
+        </div>
+        <label for="name">Assigned to:</label>
+        <div class="p-1 text-black col-lg-10 rounded mx-auto color text-center" style="background-color:whitesmoke;">
+            {{ card.members }}
         </div>
         <label for="name">Date:</label>
         <div class="p-1 text-black col-lg-10 rounded mx-auto color text-center" style="background-color:whitesmoke;">
             {{ card.create_date }}
-        </div>
-        <label for="name">Members:</label>
-        <div class="p-1 text-black col-lg-10 rounded mx-auto color text-center" style="background-color:whitesmoke;">
-            {{ card.members }}
         </div>
         <label for="name">Description:</label>
         <div class="p-1 text-black col-lg-10 rounded mx-auto color text-center" style="background-color:whitesmoke;">
